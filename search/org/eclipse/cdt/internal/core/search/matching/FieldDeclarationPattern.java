@@ -9,11 +9,10 @@
  *     IBM Corp. - Rational Software - initial implementation
  ******************************************************************************/
 /*
- * Created on Jun 13, 2003
+ * Created on Jul 11, 2003
  */
-package org.eclipse.cdt.core.search;
+package org.eclipse.cdt.internal.core.search.matching;
 
-import org.eclipse.cdt.core.parser.ast.IASTOffsetableElement;
 
 /**
  * @author aniefer
@@ -21,18 +20,18 @@ import org.eclipse.cdt.core.parser.ast.IASTOffsetableElement;
  * To change the template for this generated type comment go to
  * Window>Preferences>Java>Code Generation>Code and Comments
  */
-public interface ICSearchPattern extends ICSearchConstants{
+public class FieldDeclarationPattern extends VariableDeclarationPattern {
 
-	public static final int IMPOSSIBLE_MATCH = 0;
-	public static final int POSSIBLE_MATCH   = 1;
-	public static final int ACCURATE_MATCH   = 2;
-	public static final int INACCURATE_MATCH = 3;
-	
 	/**
-	 * @param node
-	 * @return
+	 * @param name
+	 * @param cs
+	 * @param matchMode
+	 * @param limitTo
+	 * @param caseSensitive
 	 */
-	int matchLevel( IASTOffsetableElement node );
-	
-	LimitTo   getLimitTo();
+	public FieldDeclarationPattern(char[] name, char[][] cs, int matchMode, LimitTo limitTo, boolean caseSensitive) {
+		super( name, matchMode, limitTo, caseSensitive );
+		// TODO Auto-generated constructor stub
+	}
+
 }
