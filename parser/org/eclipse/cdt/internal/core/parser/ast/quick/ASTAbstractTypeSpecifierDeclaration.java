@@ -10,43 +10,52 @@
 ***********************************************************************/
 package org.eclipse.cdt.internal.core.parser.ast.quick;
 
+import org.eclipse.cdt.core.parser.ast.IASTAbstractTypeSpecifierDeclaration;
 import org.eclipse.cdt.core.parser.ast.IASTScope;
-import org.eclipse.cdt.core.parser.ast.IASTUsingDeclaration;
+import org.eclipse.cdt.core.parser.ast.IASTTemplate;
+import org.eclipse.cdt.core.parser.ast.IASTTypeSpecifier;
 import org.eclipse.cdt.internal.core.parser.ast.Offsets;
 
 /**
  * @author jcamelon
  *
  */
-public class ASTUsingDeclaration
-	extends ASTDeclaration
-	implements IASTUsingDeclaration {
-
-	private final boolean isTypename; 
-	private final String  mappingName; 
-	
-	public ASTUsingDeclaration( IASTScope scope, boolean isTypeName, String mappingName, int startingOffset, int endingOffset )
-	{
-		super( scope );
-		isTypename = isTypeName;
-		this.mappingName = mappingName;
+public class ASTAbstractTypeSpecifierDeclaration
+    extends ASTDeclaration
+    implements IASTAbstractTypeSpecifierDeclaration
+{
+	private final IASTTemplate ownerTemplate;
+    private final IASTTypeSpecifier typeSpecifier;
+    /**
+     * @param scope
+     * @param typeSpecifier
+     */
+    public ASTAbstractTypeSpecifierDeclaration(IASTScope scope, IASTTypeSpecifier typeSpecifier, IASTTemplate ownerTemplate, int startingOffset, int endingOffset)
+    {
+        super( ownerTemplate != null ? null : scope  ); 
+        this.typeSpecifier = typeSpecifier;
+        this.ownerTemplate = ownerTemplate;
+        if( ownerTemplate != null )
+        	ownerTemplate.setOwnedDeclaration( this );
 		setStartingOffset(startingOffset);
 		setEndingOffset(endingOffset);
-	}
-	/* (non-Javadoc)
-	 * @see org.eclipse.cdt.core.parser.ast.IASTUsingDeclaration#isTypename()
-	 */
-	public boolean isTypename() {
-		return isTypename;
-	}
+    }
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.cdt.core.parser.ast.IASTUsingDeclaration#usingTypeName()
-	 */
-	public String usingTypeName() {
-		return mappingName;
-	}
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.parser.ast.IASTAbstractDeclaration#getTypeSpecifier()
+     */
+    public IASTTypeSpecifier getTypeSpecifier()
+    {
+        return typeSpecifier;
+    }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.core.parser.ast.IASTTemplatedDeclaration#getOwnerTemplateDeclaration()
+     */
+    public IASTTemplate getOwnerTemplateDeclaration()
+    {
+        return ownerTemplate;
+    }
 	/* (non-Javadoc)
 	 * @see org.eclipse.cdt.core.parser.ast.IASTOffsetableElement#setStartingOffset(int)
 	 */
@@ -76,4 +85,5 @@ public class ASTUsingDeclaration
 		return offsets.getElementEndingOffset();
 	}
 	private Offsets offsets = new Offsets();
+
 }

@@ -10,16 +10,10 @@
 ***********************************************************************/
 package org.eclipse.cdt.core.parser.ast;
 
-
 /**
  * @author jcamelon
  *
  */
-public interface IASTBaseSpecifier {
-
-	public ASTAccessVisibility getAccess(); 
-	public boolean isVirtual(); 
-	public String getParentClassName(); 
-	public IASTClassSpecifier getParentClassSpecifier() throws ASTNotImplementedException;
-
+public interface IASTPointerToFunction extends IASTFunction, IASTPointerOperatorOwner
+{
 }

@@ -8,18 +8,20 @@
  * Contributors: 
  * IBM Rational Software - Initial API and implementation
 ***********************************************************************/
-package org.eclipse.cdt.core.parser.ast;
-
-
+package org.eclipse.cdt.core.parser;
+import java.util.Iterator;
+import org.eclipse.cdt.core.parser.ast.IASTCompilationUnit;
 /**
  * @author jcamelon
  *
  */
-public interface IASTBaseSpecifier {
-
-	public ASTAccessVisibility getAccess(); 
-	public boolean isVirtual(); 
-	public String getParentClassName(); 
-	public IASTClassSpecifier getParentClassSpecifier() throws ASTNotImplementedException;
-
+public interface IQuickParseCallback extends ISourceElementRequestor
+{
+    public abstract Iterator getInclusions();
+    public abstract Iterator getMacros();
+    /**
+     * @return
+     */
+    public abstract IASTCompilationUnit getCompilationUnit();
+    public abstract Iterator iterateOffsetableElements();
 }

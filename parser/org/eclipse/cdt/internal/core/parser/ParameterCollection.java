@@ -10,21 +10,28 @@
 ***********************************************************************/
 package org.eclipse.cdt.internal.core.parser;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author jcamelon
+ *
  */
-public class DeclaratorDuple {
-
-	public DeclaratorDuple( Declarator d )
-	{
-		declarator = d;
-	}
-	
-	private final Declarator declarator;  
-	/**
-	 * @return
-	 */
-	public Declarator getDeclarator() {
-		return declarator;
-	}
+public class ParameterCollection implements IParameterCollection
+{
+	private List list = new ArrayList(); 
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.internal.core.parser.IParameterCollection#getParameters()
+     */
+    public List getParameters()
+    {
+        return list;
+    }
+    /* (non-Javadoc)
+     * @see org.eclipse.cdt.internal.core.parser.IParameterCollection#addParameter(org.eclipse.cdt.internal.core.parser.DeclarationWrapper)
+     */
+    public void addParameter(DeclarationWrapper param)
+    {
+        list.add( param ); 
+    }
 }
