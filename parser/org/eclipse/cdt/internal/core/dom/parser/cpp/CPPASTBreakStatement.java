@@ -8,27 +8,14 @@
  * Contributors: 
  * IBM - Initial API and implementation
  **********************************************************************/
-package org.eclipse.cdt.core.dom.ast;
+package org.eclipse.cdt.internal.core.dom.parser.cpp;
+
+import org.eclipse.cdt.core.dom.ast.IASTBreakStatement;
 
 /**
- * Represents a node location that is directly in the source file.
- * 
- * @author Doug Schaefer
+ * @author jcamelon
  */
-public interface IASTFileLocation extends IASTNodeLocation {
-
-	/**
-	 * The name of the file.
-	 * 
-	 * @return the name of the file
-	 */
-	public String getFileName();
-	public void setFileName( String fileName );
-
-    /**
-     * @param b
-     */
-    public void setResolved(boolean b);
-    public boolean getResolved();
+public class CPPASTBreakStatement extends CPPASTNode implements
+        IASTBreakStatement {
 
 }

@@ -8,27 +8,18 @@
  * Contributors: 
  * IBM - Initial API and implementation
  **********************************************************************/
-package org.eclipse.cdt.core.dom.ast;
+package org.eclipse.cdt.internal.core.dom.parser;
+
+import org.eclipse.cdt.internal.core.parser.scanner2.ILocationResolver;
 
 /**
- * Represents a node location that is directly in the source file.
- * 
- * @author Doug Schaefer
+ * @author jcamelon
  */
-public interface IASTFileLocation extends IASTNodeLocation {
-
-	/**
-	 * The name of the file.
-	 * 
-	 * @return the name of the file
-	 */
-	public String getFileName();
-	public void setFileName( String fileName );
+public interface IRequiresLocationInformation {
 
     /**
-     * @param b
+     * @param locationResolver
      */
-    public void setResolved(boolean b);
-    public boolean getResolved();
+    void setLocationResolver(ILocationResolver resolver);
 
 }
