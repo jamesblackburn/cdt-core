@@ -13,6 +13,8 @@
  */
 package org.eclipse.cdt.core.search;
 
+import org.eclipse.cdt.core.parser.ast.IASTOffsetableElement;
+
 /**
  * @author aniefer
  *
@@ -21,4 +23,15 @@ package org.eclipse.cdt.core.search;
  */
 public interface ICSearchPattern {
 
+	public static final int IMPOSSIBLE_MATCH = 0;
+	public static final int POSSIBLE_MATCH   = 1;
+	public static final int ACCURATE_MATCH   = 2;
+	public static final int INACCURATE_MATCH = 3;
+	
+	/**
+	 * @param node
+	 * @return
+	 */
+	int matchLevel( IASTOffsetableElement node );
+	
 }
